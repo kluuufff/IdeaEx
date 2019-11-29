@@ -17,8 +17,8 @@ class MainCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         getImage()
     }
-
-    func getImage() {
+    
+    private func getImage() {
         let imageManager = PHImageManager.default()
         let requestOptions = PHImageRequestOptions()
         requestOptions.isSynchronous = true
@@ -64,9 +64,17 @@ class MainCollectionViewController: UICollectionViewController {
 extension MainCollectionViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width  = collectionView.frame.width / 3 - 1
-
-        return CGSize(width: width, height: width)
+        
+        let orientation = UIApplication.shared.statusBarOrientation
+        let sizeForLandscape = collectionView.frame.width / 5 - 1
+        let sizeForPortrait = collectionView.frame.width / 3 - 1
+        if(orientation == .landscapeLeft || orientation == .landscapeRight)
+        {
+            return CGSize(width: sizeForLandscape, height: sizeForLandscape)
+        }
+        else {
+            return CGSize(width: sizeForPortrait, height: sizeForPortrait)
+        }
     }
 
 }
