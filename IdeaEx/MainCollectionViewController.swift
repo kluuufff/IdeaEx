@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-class ViewController: UICollectionViewController {
+class MainCollectionViewController: UICollectionViewController {
     
     var imageArray = [UIImage]()
     
@@ -31,7 +31,11 @@ class ViewController: UICollectionViewController {
         
         if fetchResult.count > 0 {
             for i in 0..<fetchResult.count {
-                imageManager.requestImage(for: fetchResult.object(at: i) as PHAsset, targetSize: CGSize(width: 200, height: 200), contentMode: .aspectFill, options: requestOptions, resultHandler: { (image, _) in
+                imageManager.requestImage(for: fetchResult.object(at: i) as PHAsset,
+                                          targetSize: CGSize(width: 150, height: 150),
+                                          contentMode: .aspectFill,
+                                          options: requestOptions,
+                                          resultHandler: { (image, _) in
                     if let image = image {
                         self.imageArray.append(image)
                     }
@@ -49,11 +53,20 @@ class ViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
-        
+        cell.imageView.frame = CGRect(x: 0, y: 0, width: cell.frame.width, height: cell.frame.height)
         cell.imageView.image = imageArray[indexPath.row]
         
         return cell
     }
-
+    
 }
 
+extension MainCollectionViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width  = collectionView.frame.width / 3 - 1
+
+        return CGSize(width: width, height: width)
+    }
+
+}

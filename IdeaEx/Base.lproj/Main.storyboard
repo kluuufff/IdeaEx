@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="usu-Io-c8g">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="L7R-dL-0ct">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -8,40 +8,40 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--My Photos-->
         <scene sceneID="Wt5-ej-Ynu">
             <objects>
-                <collectionViewController id="usu-Io-c8g" customClass="ViewController" customModule="IdeaEx" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="usu-Io-c8g" customClass="MainCollectionViewController" customModule="IdeaEx" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="gR8-IA-Xr6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="XN2-gV-913">
-                            <size key="itemSize" width="161" height="161"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="8Be-Vc-iag">
+                            <size key="itemSize" width="150" height="150"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="10" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="4MW-ni-Nm4" customClass="CollectionViewCell" customModule="IdeaEx" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="161" height="161"/>
+                                <rect key="frame" x="0.0" y="10" width="150" height="150"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Hk2-t8-4tk">
-                                    <rect key="frame" x="0.0" y="0.0" width="161" height="161"/>
+                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="WZZ-Fo-lgj">
+                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="onn-Ji-UdN">
-                                            <rect key="frame" x="0.0" y="0.0" width="161" height="161"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="onn-Ji-UdN">
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="onn-Ji-UdN" firstAttribute="centerY" secondItem="Hk2-t8-4tk" secondAttribute="centerY" id="YXF-jZ-OMS"/>
-                                        <constraint firstItem="onn-Ji-UdN" firstAttribute="height" secondItem="Hk2-t8-4tk" secondAttribute="height" id="ZwL-x2-BEe"/>
-                                        <constraint firstItem="onn-Ji-UdN" firstAttribute="centerX" secondItem="Hk2-t8-4tk" secondAttribute="centerX" id="feB-Co-6b8"/>
-                                        <constraint firstItem="onn-Ji-UdN" firstAttribute="width" secondItem="Hk2-t8-4tk" secondAttribute="width" id="xTU-gv-GcP"/>
+                                        <constraint firstItem="onn-Ji-UdN" firstAttribute="centerY" secondItem="WZZ-Fo-lgj" secondAttribute="centerY" id="YXF-jZ-OMS"/>
+                                        <constraint firstItem="onn-Ji-UdN" firstAttribute="height" secondItem="WZZ-Fo-lgj" secondAttribute="height" id="ZwL-x2-BEe"/>
+                                        <constraint firstItem="onn-Ji-UdN" firstAttribute="centerX" secondItem="WZZ-Fo-lgj" secondAttribute="centerX" id="feB-Co-6b8"/>
+                                        <constraint firstItem="onn-Ji-UdN" firstAttribute="width" secondItem="WZZ-Fo-lgj" secondAttribute="width" id="xTU-gv-GcP"/>
                                     </constraints>
                                 </collectionViewCellContentView>
-                                <size key="customSize" width="161" height="161"/>
+                                <size key="customSize" width="150" height="150"/>
                                 <connections>
                                     <outlet property="imageView" destination="onn-Ji-UdN" id="GnN-gh-UjM"/>
                                 </connections>
@@ -52,8 +52,29 @@
                             <outlet property="delegate" destination="usu-Io-c8g" id="2qy-IK-jHc"/>
                         </connections>
                     </collectionView>
+                    <navigationItem key="navigationItem" title="My Photos" id="BUW-Pn-72q">
+                        <barButtonItem key="rightBarButtonItem" title="Links" id="6PW-Tu-2PF"/>
+                    </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ix6-XV-ayU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1042.0289855072465" y="116.51785714285714"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="hKP-Wv-ayO">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="L7R-dL-0ct" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="suE-4n-sEx">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="usu-Io-c8g" kind="relationship" relationship="rootViewController" id="QW2-bI-J9M"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1oq-ey-26v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="131.8840579710145" y="116.51785714285714"/>
         </scene>
