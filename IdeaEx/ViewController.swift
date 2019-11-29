@@ -9,9 +9,9 @@
 import UIKit
 import Photos
 
-class ViewController: UIViewController {
-
-    @IBOutlet weak var myImage: UIImageView!
+class ViewController: UICollectionViewController {
+    
+    var imageArray = [UIImage]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,17 +26,33 @@ class ViewController: UIViewController {
         
         let fetchOptions = PHFetchOptions()
         fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
-        fetchOptions.fetchLimit = 1
         
         let fetchResult: PHFetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions)
         
         if fetchResult.count > 0 {
-            imageManager.requestImage(for: fetchResult.object(at: 0) as PHAsset, targetSize: view.frame.size, contentMode: PHImageContentMode.aspectFill, options: requestOptions, resultHandler: { (image, _) in
-                if let image = image {
-                    self.myImage.image = image
-                }
-            })
+            for i in 0..<fetchResult.count {
+                imageManager.requestImage(for: fetchResult.object(at: i) as PHAsset, targetSize: CGSize(width: 200, height: 200), contentMode: .aspectFill, options: requestOptions, resultHandler: { (image, _) in
+                    if let image = image {
+                        self.imageArray.append(image)
+                    }
+                })
+            }
+        } else {
+            print("error")
+            collectionView.reloadData()
         }
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return imageArray.count
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
+        
+        cell.imageView.image = imageArray[indexPath.row]
+        
+        return cell
     }
 
 }
