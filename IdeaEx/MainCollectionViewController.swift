@@ -51,10 +51,20 @@ class MainCollectionViewController: UICollectionViewController {
         return imageArray.count
     }
     
+    @objc func cellTappedMethod(_ sender:AnyObject){
+        print("you tap image number: \(sender.view.tag)")
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
         cell.imageView.frame = CGRect(x: 0, y: 0, width: cell.frame.width, height: cell.frame.height)
         cell.imageView.image = imageArray[indexPath.row]
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(cellTappedMethod(_:)))
+
+        cell.imageView.isUserInteractionEnabled = true
+        cell.imageView.tag = indexPath.row
+        cell.imageView.addGestureRecognizer(tapGestureRecognizer)
         
         return cell
     }

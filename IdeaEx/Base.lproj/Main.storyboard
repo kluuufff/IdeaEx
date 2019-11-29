@@ -16,6 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <gestureRecognizers/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="8Be-Vc-iag">
                             <size key="itemSize" width="150" height="150"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -32,6 +33,7 @@
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="onn-Ji-UdN">
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                            <gestureRecognizers/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -41,6 +43,7 @@
                                         <constraint firstItem="onn-Ji-UdN" firstAttribute="width" secondItem="WZZ-Fo-lgj" secondAttribute="width" id="xTU-gv-GcP"/>
                                     </constraints>
                                 </collectionViewCellContentView>
+                                <gestureRecognizers/>
                                 <size key="customSize" width="150" height="150"/>
                                 <connections>
                                     <outlet property="imageView" destination="onn-Ji-UdN" id="GnN-gh-UjM"/>
