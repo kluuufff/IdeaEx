@@ -31,13 +31,10 @@ class ViewController: UIViewController {
         let fetchResult: PHFetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions)
         
         if fetchResult.count > 0 {
-//            let totalImageCount = 1
             imageManager.requestImage(for: fetchResult.object(at: 0) as PHAsset, targetSize: view.frame.size, contentMode: PHImageContentMode.aspectFill, options: requestOptions, resultHandler: { (image, _) in
                 if let image = image {
-                    // Add the returned image to your array
                     self.myImage.image = image
                 }
-                
             })
         }
     }
