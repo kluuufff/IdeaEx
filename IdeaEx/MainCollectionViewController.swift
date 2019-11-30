@@ -8,10 +8,12 @@
 
 import UIKit
 import Photos
+import CoreData
 
 class MainCollectionViewController: UICollectionViewController {
     
-    var imageArray = [UIImage]()
+    private var imageArray = [UIImage]()
+    private var linksArray = [NSManagedObject]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,9 +56,10 @@ class MainCollectionViewController: UICollectionViewController {
     //MARK: - TapGesture Method
     
     @objc func cellTappedMethod(_ sender: AnyObject){
+        #if DEBUG
         print("you tap image number: \(sender.view.tag)")
         print("image: \(imageArray[sender.view.tag])")
-
+        #endif
         uploadImage(image: imageArray[sender.view.tag])
     }
     
@@ -68,10 +71,16 @@ class MainCollectionViewController: UICollectionViewController {
         do {
             let decoder = JSONDecoder()
             let finalData = try decoder.decode(getLink.self, from: jsonData)
+            createData(link: finalData.data.link)
+            #if DEBUG
             print("finalData: \(finalData.data.link)")
+            #endif
         } catch let error {
             print(error)
         }
+        #if DEBUG
+        print("linksArray: \(linksArray)")
+        #endif
     }
     
     //MARK: - Upload image to IMGUR
@@ -126,6 +135,31 @@ class MainCollectionViewController: UICollectionViewController {
         cell.imageView.addGestureRecognizer(tapGestureRecognizer)
         return cell
     }
+    
+    // MARK: - CoreData
+    
+    //create
+    private func createData(link: String) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let context = appDelegate.persistentContainer.viewContext
+        guard let entity = NSEntityDescription.entity(forEntityName: "Links", in: context) else { return }
+        
+        let linkObject = NSManagedObject(entity: entity, insertInto: context)
+        linkObject.setValue(link, forKey: "link")
+        
+        do {
+            try context.save()
+            linksArray.append(linkObject)
+        } catch {
+            print("Error")
+        }
+    }
+    
+    @IBAction func linksButtonAction(_ sender: UIBarButtonItem) {
+        let linksVC = self.storyboard?.instantiateViewController(withIdentifier: "linksVC") as! LinksTableViewController
+        linksVC.tableView.reloadData()
+    }
+    
 }
 
 extension MainCollectionViewController: UICollectionViewDelegateFlowLayout {
