@@ -3,11 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		257E4E6023916B250030E4CC /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 257E4E5F23916B250030E4CC /* Podfile */; };
 		25A26DBB2392994B00EE2312 /* JsonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A26DBA2392994B00EE2312 /* JsonModel.swift */; };
 		25F51EF1238E92FB0071D93A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F51EF0238E92FB0071D93A /* AppDelegate.swift */; };
 		25F51EF3238E92FB0071D93A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F51EF2238E92FB0071D93A /* SceneDelegate.swift */; };
@@ -16,12 +15,9 @@
 		25F51EFA238E93020071D93A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25F51EF9238E93020071D93A /* Assets.xcassets */; };
 		25F51EFD238E93020071D93A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25F51EFB238E93020071D93A /* LaunchScreen.storyboard */; };
 		25F6C3BA239138F400A7884C /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F6C3B9239138F400A7884C /* CollectionViewCell.swift */; };
-		5F7263546EDEA010E81D5AC3 /* Pods_IdeaEx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F2BD66E3C140A4EDF5877F3 /* Pods_IdeaEx.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		21F50DAD91B2984830AA943C /* Pods-IdeaEx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdeaEx.release.xcconfig"; path = "Target Support Files/Pods-IdeaEx/Pods-IdeaEx.release.xcconfig"; sourceTree = "<group>"; };
-		257E4E5F23916B250030E4CC /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		25A26DBA2392994B00EE2312 /* JsonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonModel.swift; sourceTree = "<group>"; };
 		25F51EED238E92FB0071D93A /* IdeaEx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IdeaEx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25F51EF0238E92FB0071D93A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -32,8 +28,6 @@
 		25F51EFC238E93020071D93A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		25F51EFE238E93020071D93A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		25F6C3B9239138F400A7884C /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
-		6C0C1D2D94A59D325B569E1C /* Pods-IdeaEx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdeaEx.debug.xcconfig"; path = "Target Support Files/Pods-IdeaEx/Pods-IdeaEx.debug.xcconfig"; sourceTree = "<group>"; };
-		6F2BD66E3C140A4EDF5877F3 /* Pods_IdeaEx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IdeaEx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,29 +35,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F7263546EDEA010E81D5AC3 /* Pods_IdeaEx.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1A6BEEBCA2F11928FFB17994 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				6F2BD66E3C140A4EDF5877F3 /* Pods_IdeaEx.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		25F51EE4238E92FB0071D93A = {
 			isa = PBXGroup;
 			children = (
-				257E4E5F23916B250030E4CC /* Podfile */,
 				25F51EEF238E92FB0071D93A /* IdeaEx */,
 				25F51EEE238E92FB0071D93A /* Products */,
-				AD6EB99D3DF2E5BDFC2B0973 /* Pods */,
-				1A6BEEBCA2F11928FFB17994 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -91,15 +73,6 @@
 			path = IdeaEx;
 			sourceTree = "<group>";
 		};
-		AD6EB99D3DF2E5BDFC2B0973 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				6C0C1D2D94A59D325B569E1C /* Pods-IdeaEx.debug.xcconfig */,
-				21F50DAD91B2984830AA943C /* Pods-IdeaEx.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -107,11 +80,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 25F51F01238E93020071D93A /* Build configuration list for PBXNativeTarget "IdeaEx" */;
 			buildPhases = (
-				E571E1EABC079903F21F6F69 /* [CP] Check Pods Manifest.lock */,
 				25F51EE9238E92FB0071D93A /* Sources */,
 				25F51EEA238E92FB0071D93A /* Frameworks */,
 				25F51EEB238E92FB0071D93A /* Resources */,
-				51BDC80342DDAA60810D9863 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -162,54 +133,11 @@
 			files = (
 				25F51EFD238E93020071D93A /* LaunchScreen.storyboard in Resources */,
 				25F51EFA238E93020071D93A /* Assets.xcassets in Resources */,
-				257E4E6023916B250030E4CC /* Podfile in Resources */,
 				25F51EF8238E92FB0071D93A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		51BDC80342DDAA60810D9863 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-IdeaEx/Pods-IdeaEx-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-IdeaEx/Pods-IdeaEx-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-IdeaEx/Pods-IdeaEx-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E571E1EABC079903F21F6F69 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-IdeaEx-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		25F51EE9238E92FB0071D93A /* Sources */ = {
@@ -362,7 +290,6 @@
 		};
 		25F51F02238E93020071D93A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6C0C1D2D94A59D325B569E1C /* Pods-IdeaEx.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -381,7 +308,6 @@
 		};
 		25F51F03238E93020071D93A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 21F50DAD91B2984830AA943C /* Pods-IdeaEx.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

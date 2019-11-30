@@ -51,10 +51,6 @@ class MainCollectionViewController: UICollectionViewController {
         }
     }
     
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imageArray.count
-    }
-    
     //MARK: - TapGesture Method
     
     @objc func cellTappedMethod(_ sender: AnyObject){
@@ -72,7 +68,7 @@ class MainCollectionViewController: UICollectionViewController {
         do {
             let decoder = JSONDecoder()
             let finalData = try decoder.decode(getLink.self, from: jsonData)
-            print("finalData: \(finalData.data)")
+            print("finalData: \(finalData.data.link)")
         } catch let error {
             print(error)
         }
@@ -113,6 +109,10 @@ class MainCollectionViewController: UICollectionViewController {
     }
     
     //collectionView
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return imageArray.count
+    }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
