@@ -18,6 +18,8 @@ class MainCollectionViewController: UICollectionViewController {
         getImage()
     }
     
+    //MARK: - Get image from Photo Library
+    
     private func getImage() {
         let imageManager = PHImageManager.default()
         let requestOptions = PHImageRequestOptions()
@@ -43,7 +45,9 @@ class MainCollectionViewController: UICollectionViewController {
             }
         } else {
             print("error")
-            collectionView.reloadData()
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
         }
     }
     
@@ -51,9 +55,64 @@ class MainCollectionViewController: UICollectionViewController {
         return imageArray.count
     }
     
-    @objc func cellTappedMethod(_ sender:AnyObject){
+    //MARK: - TapGesture Method
+    
+    @objc func cellTappedMethod(_ sender: AnyObject){
         print("you tap image number: \(sender.view.tag)")
+        print("image: \(imageArray[sender.view.tag])")
+
+        uploadImage(image: imageArray[sender.view.tag])
     }
+    
+    //MARK: - Get Link from JSON
+    
+    private func parseJson(exampleJson: String) {
+        let jsonData = Data(exampleJson.utf8)
+        
+        do {
+            let decoder = JSONDecoder()
+            let finalData = try decoder.decode(getLink.self, from: jsonData)
+            print("finalData: \(finalData.data)")
+        } catch let error {
+            print(error)
+        }
+    }
+    
+    //MARK: - Upload image to IMGUR
+    
+    func uploadImage(image: UIImage) {
+        let chosenImage = image
+        let imageData = chosenImage.jpegData(compressionQuality: 1)
+        guard let uploadUrlString = URL(string: "https://api.imgur.com/3/upload") else { return }
+        
+        var postRequest = URLRequest(url: uploadUrlString)
+        postRequest.addValue("Client-ID 15cffe374dc85b8", forHTTPHeaderField: "Authorization")
+        postRequest.httpMethod = "POST"
+        postRequest.httpBody = imageData
+        
+        let uploadSession = URLSession.shared
+        
+        let executePostRequest = uploadSession.dataTask(with: postRequest as URLRequest) { (data, response, error) -> Void in
+            DispatchQueue.main.async {
+                if let response = response as? HTTPURLResponse {
+                    print(response.statusCode)
+                }
+                if let data = data {
+                    guard let json = String(data: data, encoding: String.Encoding.utf8) else { return }
+                    
+                    self.parseJson(exampleJson: json)
+                    
+                    #if DEBUG
+                    print("Response data: \(String(describing: json))")
+                    #endif
+                }
+            }
+        }
+        executePostRequest.resume()
+        
+    }
+    
+    //collectionView
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
@@ -65,10 +124,8 @@ class MainCollectionViewController: UICollectionViewController {
         cell.imageView.isUserInteractionEnabled = true
         cell.imageView.tag = indexPath.row
         cell.imageView.addGestureRecognizer(tapGestureRecognizer)
-        
         return cell
     }
-    
 }
 
 extension MainCollectionViewController: UICollectionViewDelegateFlowLayout {
