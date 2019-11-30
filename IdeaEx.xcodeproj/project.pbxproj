@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		25A26DBB2392994B00EE2312 /* JsonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A26DBA2392994B00EE2312 /* JsonModel.swift */; };
+		25A26DBE2392A5CC00EE2312 /* DataForLinks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 25A26DBC2392A5CC00EE2312 /* DataForLinks.xcdatamodeld */; };
 		25F51EF1238E92FB0071D93A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F51EF0238E92FB0071D93A /* AppDelegate.swift */; };
 		25F51EF3238E92FB0071D93A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F51EF2238E92FB0071D93A /* SceneDelegate.swift */; };
 		25F51EF5238E92FB0071D93A /* MainCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F51EF4238E92FB0071D93A /* MainCollectionViewController.swift */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		25A26DBA2392994B00EE2312 /* JsonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonModel.swift; sourceTree = "<group>"; };
+		25A26DBD2392A5CC00EE2312 /* DataForLinks.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataForLinks.xcdatamodel; sourceTree = "<group>"; };
 		25F51EED238E92FB0071D93A /* IdeaEx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IdeaEx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25F51EF0238E92FB0071D93A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25F51EF2238E92FB0071D93A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 				25F51EF6238E92FB0071D93A /* Main.storyboard */,
 				25F51EF9238E93020071D93A /* Assets.xcassets */,
 				25F51EFB238E93020071D93A /* LaunchScreen.storyboard */,
+				25A26DBC2392A5CC00EE2312 /* DataForLinks.xcdatamodeld */,
 				25F51EFE238E93020071D93A /* Info.plist */,
 			);
 			path = IdeaEx;
@@ -147,6 +150,7 @@
 				25A26DBB2392994B00EE2312 /* JsonModel.swift in Sources */,
 				25F51EF5238E92FB0071D93A /* MainCollectionViewController.swift in Sources */,
 				25F51EF1238E92FB0071D93A /* AppDelegate.swift in Sources */,
+				25A26DBE2392A5CC00EE2312 /* DataForLinks.xcdatamodeld in Sources */,
 				25F6C3BA239138F400A7884C /* CollectionViewCell.swift in Sources */,
 				25F51EF3238E92FB0071D93A /* SceneDelegate.swift in Sources */,
 			);
@@ -346,6 +350,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		25A26DBC2392A5CC00EE2312 /* DataForLinks.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				25A26DBD2392A5CC00EE2312 /* DataForLinks.xcdatamodel */,
+			);
+			currentVersion = 25A26DBD2392A5CC00EE2312 /* DataForLinks.xcdatamodel */;
+			path = DataForLinks.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 25F51EE5238E92FB0071D93A /* Project object */;
 }
