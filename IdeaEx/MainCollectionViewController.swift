@@ -75,7 +75,7 @@ class MainCollectionViewController: UICollectionViewController {
     
     //MARK: - Upload image to IMGUR
     
-    func uploadImage(image: UIImage) {
+    func uploadImage(image: UIImage, spinner: UIActivityIndicatorView) {
         let chosenImage = image
         let imageData = chosenImage.jpegData(compressionQuality: 1)
         guard let uploadUrlString = URL(string: "https://api.imgur.com/3/upload") else { return }
@@ -89,7 +89,6 @@ class MainCollectionViewController: UICollectionViewController {
         
         let executePostRequest = uploadSession.dataTask(with: postRequest as URLRequest) { (data, response, error) -> Void in
             DispatchQueue.main.async {
-                
                 if let response = response as? HTTPURLResponse {
                     print(response.statusCode)
                 }
@@ -97,8 +96,7 @@ class MainCollectionViewController: UICollectionViewController {
                     guard let json = String(data: data, encoding: String.Encoding.utf8) else { return }
                     
                     self.parseJson(exampleJson: json)
-//                    spinner.stopAnimating()
-                    
+                    spinner.stopAnimating()
                     #if DEBUG
                     print("Response data: \(String(describing: json))")
                     #endif
@@ -122,13 +120,17 @@ class MainCollectionViewController: UICollectionViewController {
         return cell
     }
     
+    //select cell
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! CollectionViewCell
+        cell.spinner.startAnimating()
+        
+        self.uploadImage(image: self.imageArray[indexPath.row], spinner: cell.spinner)
+        
         #if DEBUG
         print("you tap image number: \(indexPath.row)")
         print("image: \(imageArray[indexPath.row])")
         #endif
-
-        self.uploadImage(image: self.imageArray[indexPath.row])
         
     }
     

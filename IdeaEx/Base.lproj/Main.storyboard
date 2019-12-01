@@ -36,11 +36,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                             <gestureRecognizers/>
                                         </imageView>
+                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="eS1-oo-G42">
+                                            <rect key="frame" x="31.5" y="31.5" width="37" height="37"/>
+                                        </activityIndicatorView>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="eS1-oo-G42" firstAttribute="centerX" secondItem="WZZ-Fo-lgj" secondAttribute="centerX" id="Whk-Rh-5uh"/>
                                         <constraint firstItem="onn-Ji-UdN" firstAttribute="centerY" secondItem="WZZ-Fo-lgj" secondAttribute="centerY" id="YXF-jZ-OMS"/>
                                         <constraint firstItem="onn-Ji-UdN" firstAttribute="height" secondItem="WZZ-Fo-lgj" secondAttribute="height" id="ZwL-x2-BEe"/>
                                         <constraint firstItem="onn-Ji-UdN" firstAttribute="centerX" secondItem="WZZ-Fo-lgj" secondAttribute="centerX" id="feB-Co-6b8"/>
+                                        <constraint firstItem="eS1-oo-G42" firstAttribute="centerY" secondItem="WZZ-Fo-lgj" secondAttribute="centerY" id="hiL-Zi-Nlp"/>
                                         <constraint firstItem="onn-Ji-UdN" firstAttribute="width" secondItem="WZZ-Fo-lgj" secondAttribute="width" id="xTU-gv-GcP"/>
                                     </constraints>
                                 </collectionViewCellContentView>
@@ -48,6 +53,7 @@
                                 <size key="customSize" width="100" height="100"/>
                                 <connections>
                                     <outlet property="imageView" destination="onn-Ji-UdN" id="GnN-gh-UjM"/>
+                                    <outlet property="spinner" destination="eS1-oo-G42" id="ABs-6O-1qT"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
