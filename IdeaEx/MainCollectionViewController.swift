@@ -100,6 +100,15 @@ class MainCollectionViewController: UICollectionViewController {
                     #if DEBUG
                     print("Response data: \(String(describing: json))")
                     #endif
+                } else {
+                    let alert = UIAlertController(title: "Error", message: "Error when upload image", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                    let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                    alert.addAction(ok)
+                    alert.addAction(cancel)
+                    #if DEBUG
+                    print("Error")
+                    #endif
                 }
             }
         }
@@ -174,6 +183,10 @@ extension MainCollectionViewController: UICollectionViewDelegateFlowLayout {
         else {
             return CGSize(width: sizeForPortrait, height: sizeForPortrait)
         }
+    }
+    
+    override func willRotate(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
+        collectionViewLayout.invalidateLayout()
     }
 
 }

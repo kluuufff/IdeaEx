@@ -15,7 +15,6 @@ class WebViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        thisURLstr = urlString
         guard let testURL = URL(string: urlString) else { return }
         let testURLRequest = URLRequest(url: testURL)
         webView.loadRequest(testURLRequest)
