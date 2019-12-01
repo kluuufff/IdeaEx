@@ -23,32 +23,42 @@ class MainCollectionViewController: UICollectionViewController {
     //MARK: - Get image from Photo Library
     
     private func getImage() {
+        let spinner: UIActivityIndicatorView = UIActivityIndicatorView()
+        spinner.style = .gray
+        spinner.center = self.view.center
+        spinner.hidesWhenStopped = true
+        view.addSubview(spinner)
+        
         let imageManager = PHImageManager.default()
         let requestOptions = PHImageRequestOptions()
         requestOptions.isSynchronous = true
-        requestOptions.deliveryMode = .highQualityFormat
+        requestOptions.deliveryMode = .fastFormat
+//        requestOptions.version = .original
         
         let fetchOptions = PHFetchOptions()
         fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         
         let fetchResult: PHFetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions)
-        
-        if fetchResult.count > 0 {
-            for i in 0..<fetchResult.count {
-                imageManager.requestImage(for: fetchResult.object(at: i) as PHAsset,
-                                          targetSize: CGSize(width: 150, height: 150),
-                                          contentMode: .aspectFill,
-                                          options: requestOptions,
-                                          resultHandler: { (image, _) in
-                    if let image = image {
-                        self.imageArray.append(image)
-                    }
-                })
-            }
-        } else {
-            print("error")
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
+        spinner.startAnimating()
+        DispatchQueue.main.async {
+            if fetchResult.count > 0 {
+                for i in 0..<fetchResult.count {
+                    imageManager.requestImage(for: fetchResult.object(at: i) as PHAsset,
+                                              targetSize: PHImageManagerMaximumSize,
+//                                              targetSize: CGSize(width: 150, height: 150),
+                                              contentMode: .aspectFit,
+                                              options: requestOptions,
+                                              resultHandler: { (image, _) in
+                                                if let image = image {
+                                                    self.imageArray.append(image)
+                                                }
+                    })
+                    self.collectionView.reloadData()
+                    spinner.stopAnimating()
+                }
+            } else {
+                spinner.stopAnimating()
+                print("error with photo library")
             }
         }
     }
@@ -66,7 +76,9 @@ class MainCollectionViewController: UICollectionViewController {
             print("finalData: \(finalData.data.link)")
             #endif
         } catch let error {
+            #if DEBUG
             print(error)
+            #endif
         }
         #if DEBUG
         print("linksArray: \(linksArray)")
@@ -90,7 +102,9 @@ class MainCollectionViewController: UICollectionViewController {
         let executePostRequest = uploadSession.dataTask(with: postRequest as URLRequest) { (data, response, error) -> Void in
             DispatchQueue.main.async {
                 if let response = response as? HTTPURLResponse {
+                    #if DEBUG
                     print(response.statusCode)
+                    #endif
                 }
                 if let data = data {
                     guard let json = String(data: data, encoding: String.Encoding.utf8) else { return }
@@ -101,13 +115,13 @@ class MainCollectionViewController: UICollectionViewController {
                     print("Response data: \(String(describing: json))")
                     #endif
                 } else {
+                    spinner.stopAnimating()
                     let alert = UIAlertController(title: "Error", message: "Error when upload image", preferredStyle: .alert)
                     let ok = UIAlertAction(title: "Ok", style: .default, handler: nil)
-                    let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
                     alert.addAction(ok)
-                    alert.addAction(cancel)
+                    self.present(alert, animated: true, completion: nil)
                     #if DEBUG
-                    print("Error")
+                    print("Error upload")
                     #endif
                 }
             }
@@ -142,6 +156,7 @@ class MainCollectionViewController: UICollectionViewController {
         #endif
         
     }
+    
     
     // MARK: - CoreData
     

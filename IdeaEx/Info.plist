@@ -61,6 +61,6 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Yes</string>
+	<string>Need for load Photos</string>
 </dict>
 </plist>

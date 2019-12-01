@@ -34,14 +34,18 @@ class LinksTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        #if DEBUG
         print("arrayOfLinks.count \(arrayOfLinks.count)")
+        #endif
         return arrayOfLinks.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "linksCell", for: indexPath)
+        #if DEBUG
         print("arrayOfLinks: \(arrayOfLinks)")
+        #endif
         cell.textLabel?.text = arrayOfLinks[indexPath.row].value(forKeyPath: "link") as? String
 
         return cell
