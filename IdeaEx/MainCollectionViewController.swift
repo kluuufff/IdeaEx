@@ -53,16 +53,6 @@ class MainCollectionViewController: UICollectionViewController {
         }
     }
     
-    //MARK: - TapGesture Method
-    
-    @objc func cellTappedMethod(_ sender: AnyObject){
-        #if DEBUG
-        print("you tap image number: \(sender.view.tag)")
-        print("image: \(imageArray[sender.view.tag])")
-        #endif
-        uploadImage(image: imageArray[sender.view.tag])
-    }
-    
     //MARK: - Get Link from JSON
     
     private func parseJson(exampleJson: String) {
@@ -99,6 +89,7 @@ class MainCollectionViewController: UICollectionViewController {
         
         let executePostRequest = uploadSession.dataTask(with: postRequest as URLRequest) { (data, response, error) -> Void in
             DispatchQueue.main.async {
+                
                 if let response = response as? HTTPURLResponse {
                     print(response.statusCode)
                 }
@@ -106,6 +97,7 @@ class MainCollectionViewController: UICollectionViewController {
                     guard let json = String(data: data, encoding: String.Encoding.utf8) else { return }
                     
                     self.parseJson(exampleJson: json)
+//                    spinner.stopAnimating()
                     
                     #if DEBUG
                     print("Response data: \(String(describing: json))")
@@ -127,13 +119,17 @@ class MainCollectionViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
         cell.imageView.frame = CGRect(x: 0, y: 0, width: cell.frame.width, height: cell.frame.height)
         cell.imageView.image = imageArray[indexPath.row]
-        
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(cellTappedMethod(_:)))
-
-        cell.imageView.isUserInteractionEnabled = true
-        cell.imageView.tag = indexPath.row
-        cell.imageView.addGestureRecognizer(tapGestureRecognizer)
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        #if DEBUG
+        print("you tap image number: \(indexPath.row)")
+        print("image: \(imageArray[indexPath.row])")
+        #endif
+
+        self.uploadImage(image: self.imageArray[indexPath.row])
+        
     }
     
     // MARK: - CoreData
