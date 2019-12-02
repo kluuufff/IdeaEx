@@ -59,8 +59,8 @@ class MainCollectionViewController: UICollectionViewController {
                                 options: nil)
                                 
                                 imageManager.requestImage(for: fetchResult.object(at: i) as PHAsset,
-                                                          targetSize: PHImageManagerMaximumSize,
-                                    //targetSize: CGSize(width: 150, height: 150),
+//                                                          targetSize: PHImageManagerMaximumSize,
+                                    targetSize: CGSize(width: 150, height: 150),
                                     contentMode: .aspectFit,
                                     options: requestOptions,
                                     resultHandler: { (image, _) in
