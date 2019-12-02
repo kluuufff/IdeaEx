@@ -12,6 +12,7 @@ import CoreData
 
 class MainCollectionViewController: UICollectionViewController {
     
+    fileprivate var assetArray = [PHAsset]()
     private var imageArray = [UIImage]()
     private var linksArray = [NSManagedObject]()
     
@@ -29,37 +30,55 @@ class MainCollectionViewController: UICollectionViewController {
         spinner.hidesWhenStopped = true
         view.addSubview(spinner)
         
-        let imageManager = PHImageManager.default()
+        let imageManager = PHCachingImageManager()
         let requestOptions = PHImageRequestOptions()
         requestOptions.isSynchronous = true
-        requestOptions.deliveryMode = .fastFormat
-//        requestOptions.version = .original
+        requestOptions.deliveryMode = .opportunistic
+        //        requestOptions.version = .original
         
         let fetchOptions = PHFetchOptions()
         fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         
         let fetchResult: PHFetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions)
-        spinner.startAnimating()
-        DispatchQueue.main.async {
-            if fetchResult.count > 0 {
-                for i in 0..<fetchResult.count {
-                    imageManager.requestImage(for: fetchResult.object(at: i) as PHAsset,
-                                              targetSize: PHImageManagerMaximumSize,
-//                                              targetSize: CGSize(width: 150, height: 150),
-                                              contentMode: .aspectFit,
-                                              options: requestOptions,
-                                              resultHandler: { (image, _) in
-                                                if let image = image {
-                                                    self.imageArray.append(image)
-                                                }
-                    })
-                    self.collectionView.reloadData()
-                    spinner.stopAnimating()
+        
+        let status = PHPhotoLibrary.authorizationStatus()
+        if (status == .denied || status == .restricted) {
+            print("Access to PHPhoto library is denied.")
+            return
+        } else {
+            spinner.startAnimating()
+            PHPhotoLibrary.requestAuthorization { (authStatus) in
+                if authStatus == .authorized{
+                    DispatchQueue.main.async {
+                        if fetchResult.count > 0 {
+                            for i in 0..<fetchResult.count {
+                                
+                                imageManager.startCachingImages(for: self.assetArray,
+                                targetSize: CGSize(width: 150.0, height: 150.0),
+                                contentMode: .default,
+                                options: nil)
+                                
+                                imageManager.requestImage(for: fetchResult.object(at: i) as PHAsset,
+                                                          targetSize: PHImageManagerMaximumSize,
+                                    //targetSize: CGSize(width: 150, height: 150),
+                                    contentMode: .aspectFit,
+                                    options: requestOptions,
+                                    resultHandler: { (image, _) in
+                                        if let image = image {
+                                            self.imageArray.append(image)
+                                        }
+                                })
+                                self.collectionView.reloadData()
+                                spinner.stopAnimating()
+                            }
+                        } else {
+                            spinner.stopAnimating()
+                            print("error with photo library")
+                        }
+                    }
                 }
-            } else {
-                spinner.stopAnimating()
-                print("error with photo library")
             }
+            
         }
     }
     
